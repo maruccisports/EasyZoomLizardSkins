@@ -107,8 +107,24 @@
             });
         }
 
-        this.$target.append(this.$flyout);
+        var gripImage = new Image();
+        var gripUrl = $('#grip-image');
 
+        if(this.$gripImage) {
+            this.$gripImage.remove();
+        }
+
+        if(gripUrl.attr('src')) {
+            gripImage.src = gripUrl.attr('src');
+            gripImage.style.zIndex = 9999;
+            gripImage.style.position = 'absolute';
+
+            this.$gripImage = $(gripImage);
+            this.$flyout.append(gripImage);
+        }
+            
+        this.$target.append(this.$flyout);
+        
         var targetWidth = this.$target.outerWidth();
         var targetHeight = this.$target.outerHeight();
 
@@ -214,7 +230,6 @@
      */
     EasyZoom.prototype._loadImage = function(href, callback) {
         var zoom = new Image();
-
         this.$target
             .addClass('is-loading')
             .append(this.$notice.text(this.opts.loadingNotice));
@@ -258,8 +273,15 @@
 
             if ('transform' in document.body.style) {
                 this.$zoom.css({ transform: 'translate(' + left + 'px, ' + top + 'px)' });
+                if(this.$gripImage) {
+                    this.$gripImage.css({ transform: 'translate(' + left + 'px, ' + top + 'px)' });
+                }
+                    
             } else {
                 this.$zoom.css({ top: top, left: left });
+                if(this.$gripImage) {
+                    this.$gripImage.css({ top: top, left: left });
+                }
             }
 
             this.opts.onMove.call(this, top, left);
