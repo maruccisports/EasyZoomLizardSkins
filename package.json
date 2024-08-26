@@ -19,7 +19,7 @@
     "prepublishOnly": "grunt",
     "test": "grunt jshint && open test/runner.html"
   },
-  "main": "src/easyzoom.js",
+  "main": "dist/easyzoom.js",
   "dependencies": {
     "jquery": ">=1.7"
   },
