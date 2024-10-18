@@ -73,7 +73,7 @@
      */
     EasyZoom.prototype._init = function() {
         this.$link   = this.$target.find('a');
-        this.$image  = this.$target.find('img');
+        this.$image  = this.$link.find('img');
 
         this.$flyout = $('<div class="easyzoom-flyout" />');
         this.$notice = $('<div class="easyzoom-notice" />');
