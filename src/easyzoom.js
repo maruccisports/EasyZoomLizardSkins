@@ -107,20 +107,15 @@
             });
         }
 
-        var gripImage = new Image();
-        var gripUrl = $('#grip-image');
+        var personalization = $('#personalization');
 
-        if(this.$gripImage) {
-            this.$gripImage.remove();
+        if(this.$personalization) {
+            this.$personalization.remove();
         }
 
-        if(gripUrl.attr('src')) {
-            gripImage.src = gripUrl.attr('src');
-            gripImage.style.zIndex = 9999;
-            gripImage.style.position = 'absolute';
-
-            this.$gripImage = $(gripImage);
-            this.$flyout.append(gripImage);
+        if(personalization) {
+            this.$personalization = personalization.clone();
+            this.$flyout.append(this.$personalization);
         }
             
         this.$target.append(this.$flyout);
@@ -273,14 +268,14 @@
 
             if ('transform' in document.body.style) {
                 this.$zoom.css({ transform: 'translate(' + left + 'px, ' + top + 'px)' });
-                if(this.$gripImage) {
-                    this.$gripImage.css({ transform: 'translate(' + left + 'px, ' + top + 'px)' });
+                if(this.$personalization) {
+                    this.$personalization.css({ transform: 'translate(' + left + 'px, ' + top + 'px)' });
                 }
                     
             } else {
                 this.$zoom.css({ top: top, left: left });
-                if(this.$gripImage) {
-                    this.$gripImage.css({ top: top, left: left });
+                if(this.$personalization) {
+                    this.$personalization.css({ top: top, left: left });
                 }
             }
 
